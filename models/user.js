@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.associate = function(models) {
-    // User.hasMany
+    User.belongsToMany(models.Event, {through : FavoriteEvent})
   };
 
   return User;

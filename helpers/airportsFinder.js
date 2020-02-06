@@ -12,9 +12,6 @@ const getAirport = (longitude, latitude) => {
             "radius": `20`,
             "lng":  `${longitude}`,
             "lat": `${latitude}`
-        // "radius":"20",
-        // "lng":"-157.895277",
-        // "lat":"21.265600"
         }
         })
 }

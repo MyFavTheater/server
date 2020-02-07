@@ -20,6 +20,8 @@ module.exports = (err, req, res, next) => {
             })
         });
         res.status(400).json(arr)
+    } else if (err.name === "SequelizeValidationError") {
+        res.status(400).json("favorite is exist")
     } else if (err.errors[0].message === "email already exist") {
         res.status(400).json(err.errors[0].message)
     } else {

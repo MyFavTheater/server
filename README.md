@@ -52,7 +52,7 @@ Internal Server Error
 
 ## 2. PUT     /users/update/:id
 
-    Find Todos by Id
+    Update User
 
 * **EXAMPLE URL:**
 

@@ -1,5 +1,6 @@
 'use strict';
 const { hashPassword } = require('../helpers/bcrypt')
+const createError = require('http-errors')
 module.exports = (sequelize, DataTypes) => {
 
   const { Model } = sequelize.Sequelize

@@ -26,7 +26,7 @@ class EventController {
             return Event.findOne({where: {id: favoriteData.EventId}})
         })
         .then(result => {
-            sentEmail(req.user.user, result.title, result.performersName, result.announce_date, result.city)
+            sentEmail(req.user.user, result.title, result.performersName, result.announce_date, result.city, result.link)
             res.send(result)
         })
         .catch(err => {

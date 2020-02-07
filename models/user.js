@@ -1,5 +1,6 @@
 'use strict';
 const { hashPassword } = require('../helpers/bcrypt')
+const createError = require('http-errors')
 module.exports = (sequelize, DataTypes) => {
 
   const { Model } = sequelize.Sequelize
@@ -14,18 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     email: {
-      type: DataTypes.STRING,
-      validate: {
-        notEmpty: true,
-        isExist(value){
-          return User.count({ where: { email: value}})
-          .then(count => {
-            if (count != 0){
-              throw createError(400, 'Account already registered')
-            }
-          })
-        }
-      }
+      type: DataTypes.STRING
     },
     password: {
       type: DataTypes.STRING,

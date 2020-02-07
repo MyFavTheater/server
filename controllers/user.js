@@ -39,7 +39,7 @@ class UserController {
     User.update(userUpdate, userId)
       .then(result => {
         if (result[0] == 0) {
-          res.status()
+          res.status(404).json({message: 'error not found' })
         } else {
           res.status(200).json(userUpdate)
         }
@@ -67,7 +67,7 @@ class UserController {
             }
             res.status(200).json({ token: jwt.sign(obj, process.env.JWT_SECRET), user })
           } else {
-            next(createError(401, { message: { error: 'Not Authorized' } }))
+            next(createError(401, { message: { error: 'Validations Error' } }))
           }
         }
       })

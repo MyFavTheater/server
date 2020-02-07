@@ -1,12 +1,10 @@
 'use strict';
-
-const bcrypt = require('bcrypt')
-
+const { hashPassword } = require('../helpers/bcrypt')
 module.exports = (sequelize, DataTypes) => {
 
-  const {Model} = sequelize.Sequelize
+  const { Model } = sequelize.Sequelize
 
-  class User extends Model {}
+  class User extends Model { }
 
   User.init({
     fullname: {
@@ -16,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     email: {
-      type:DataTypes.STRING,
+      type: DataTypes.STRING,
       validate: {
         notEmpty: true
       }
@@ -27,17 +25,17 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       }
     }
-  }, { 
+  }, {
     hooks: {
-    beforeCreate(instance, options){
-      instance.password = bcrypt.hashSync(instance.password, 10)
-    }
+      beforeValidate: (user) => {
+        user.password = (hashPassword(user.password))
+      }
     },
     sequelize
   });
 
-  User.associate = function(models) {
-    User.belongsToMany(models.Event, {through : 'FavoriteEvent'})
+  User.associate = function (models) {
+    User.belongsToMany(models.Event, { through: 'FavoriteEvent' })
   };
 
   return User;

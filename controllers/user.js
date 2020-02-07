@@ -1,6 +1,7 @@
 const {User} = require('../models')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const createError = require('http-errors')
 
 class UserController {
 
@@ -55,9 +56,10 @@ class UserController {
 
     User.findOne(data)
     .then(user => {
-      console.log(user.email, user.password)
+      console.log(user)
       if (!user){
-        throw createError(404, {message: { error: 'Not Found'}})
+        // next()
+        next(createError(404, {message: { error: 'Not Found'}}))
       } else {
         if (bcrypt.compareSync(req.body.password, user.password)){
           let obj = {
@@ -68,13 +70,12 @@ class UserController {
           res.status(200).json({token: jwt.sign(obj, process.env.JWT_SECRET)})
         } else {
           console.log('masuk else')
-          throw createError(401, {message: { error: 'Not Authorized'}})
+          next(createError(401, {message: { error: 'Not Authorized'}}))
         }
       }
     })
     .catch(err => {
-      console.log('masuk catch')
-      next()
+      next(err)
     })
   }
 

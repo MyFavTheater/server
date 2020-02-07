@@ -604,3 +604,112 @@ If request failed caused by server:
 ```javascript
 Internal Server Error
 ```
+## 8. GET /AIRPORTFINDER
+
+    To Find Airport
+
+* **URL:**
+
+http://localhost:3000/airport
+
+* **REQUEST HEADER**
+
+```javascript
+{
+    "Content-Type": "application/json; charset=utf-8"
+}
+```
+
+* **RESPONSE**
+
+If request success and data available on server:
+<br>
+status : <span style="background-color: green">200 OK</span>
+
+```javascript
+[
+  {
+    "airportId": "5d5448a4-f7d7-461d-8ec0-7881719cc013",
+    "code": "HNL",
+    "name": "Honolulu, Oahu",
+    "location": {
+      "longitude": -157.925,
+      "latitude": 21.321667
+    },
+    "cityId": "7b244a1b-b2fb-4e9b-a611-3f3107f9adfc",
+    "city": "Honolulu",
+    "countryCode": "US",
+    "themes": [
+      "BEACH",
+      "HISTORIC",
+      "OUTDOORS",
+      "ROMANTIC",
+      "SHOPPING"
+    ],
+    "pointsOfSale": [
+      "US"
+    ]
+  },
+  {
+    "airportId": "896d2041-5083-4d5d-b11b-575d388e8e6f",
+    "code": "NRI",
+    "name": "Shangri-la Airport",
+    "location": {
+      "longitude": -157.794932,
+      "latitude": 21.256836
+    },
+    "cityId": "7b244a1b-b2fb-4e9b-a611-3f3107f9adfc",
+    "city": "Honolulu",
+    "countryCode": "US",
+    "themes": [],
+    "pointsOfSale": [
+      "US"
+    ]
+  },
+  {
+    "airportId": "0bf1e80e-bf08-4a62-9f18-41328cc62fc4",
+    "code": "HIK",
+    "name": "Hickam AFB Airport",
+    "location": {
+      "longitude": -157.8583333,
+      "latitude": 21.3069444
+    },
+    "cityId": "7b244a1b-b2fb-4e9b-a611-3f3107f9adfc",
+    "city": "Honolulu",
+    "countryCode": "US",
+    "themes": [],
+    "pointsOfSale": [
+      "US"
+    ]
+  },
+  {
+    "airportId": "aed7c2eb-54ce-47c2-966f-9e2079506b9c",
+    "code": "JRF",
+    "name": "Kalaeloa (John Rodgers Field) Airport",
+    "location": {
+      "longitude": -158.0568965,
+      "latitude": 21.3353909
+    },
+    "cityId": "438dd674-e443-466c-a62e-ce6a9c80cf86",
+    "city": "Kapolei",
+    "countryCode": "US",
+    "themes": [],
+    "pointsOfSale": [
+      "US"
+    ]
+  }
+]
+```
+
+If request success but there is no data on server:
+<br>
+status : <span style="background-color: red">404 NotFound</span>
+```javascript
+"Data is empty."
+```
+
+If request failed caused by server:
+<br>
+status : <span style="background-color: red">500 Server Internal Error</span>
+```javascript
+Internal Server Error

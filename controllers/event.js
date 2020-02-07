@@ -3,6 +3,7 @@
 const {Event} = require('../models')
 const {FavoriteEvent} =  require('../models')
 const sentEmail = require('../helpers/sentEmail')
+const createError = require('http-errors')
 
 class EventController {
 

@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         return FavoriteEvent.count({ where: { UserId: this.UserId, EventId: this.EventId}})
           .then(count => {
             if (count != 0){
-              throw createError(400), {message: {error: 'Already Add this Event'}}  
+              throw createError(400, 'Already Add this Event')
             }
           })
       }

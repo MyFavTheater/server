@@ -16,17 +16,17 @@ module.exports = (sequelize, DataTypes) => {
     },
     email: {
       type: DataTypes.STRING,
-      validate: {
-        notEmpty: true,
-        isExist(value){
-          return User.count({ where: { email: value}})
-          .then(count => {
-            if (count != 0){
-              throw createError(400, 'Account already registered')
-            }
-          })
-        }
-      }
+      // validate: {
+      //   notEmpty: true,
+      //   isExist(value){
+      //     return User.count({ where: { email: value}})
+      //     .then(count => {
+      //       if (count != 0){
+      //         throw createError(400, 'Account already registered')
+      //       }
+      //     })
+      //   }
+      // }
     },
     password: {
       type: DataTypes.STRING,

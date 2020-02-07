@@ -11,6 +11,7 @@ const FavoriteRouter = require('../routes/favorite')
 
 // router.get('/test', (req, res, next) => res.status(200).json({ message: 'ok' }));
 router.post('/login', UserController.login)
+// router.
 router.use('/users', UserRouter)
 router.use('/airport', AirportRouter)
 router.use('/seatgeek', seatgeekRouter)

@@ -13,10 +13,10 @@ class UserController {
       email: req.body.email,
       password: req.body.password
     }
-
     User.create(addUser)
-      .then(result => {
-        res.status(200).json(result)
+      .then(user => {
+        const token = createToken(user)
+        res.status(200).json({ user, token })
       })
       .catch(error => {
         next(error)
@@ -65,7 +65,7 @@ class UserController {
               id: user.id,
               user: user.email
             }
-            res.status(200).json({ token: jwt.sign(obj, process.env.JWT_SECRET) })
+            res.status(200).json({ token: jwt.sign(obj, process.env.JWT_SECRET), user })
           } else {
             next(createError(401, { message: { error: 'Not Authorized' } }))
           }

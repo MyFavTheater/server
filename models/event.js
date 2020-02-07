@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     performersName: DataTypes.STRING,
     performersImage: DataTypes.STRING,
     url: DataTypes.STRING,
+    city: DataTypes.STRING,
     lat: DataTypes.STRING,
     lon: DataTypes.STRING
   }, {sequelize});

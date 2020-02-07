@@ -18,6 +18,7 @@ class seatgeekController {
                     dataEvent.performersName= el.performers[0].name
                     dataEvent.performersImage= el.performers[0].image
                     dataEvent.url= el.url
+                    dataEvent.city = el.venue.city
                     dataEvent.lat= el.venue.location.lat
                     dataEvent.lon= el.venue.location.lon
                     EventData.push(dataEvent)

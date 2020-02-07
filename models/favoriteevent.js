@@ -1,4 +1,7 @@
 'use strict';
+
+const createError = require('http-errors')
+
 module.exports = (sequelize, DataTypes) => {
 
   const {Model} = sequelize.Sequelize
@@ -6,9 +9,23 @@ module.exports = (sequelize, DataTypes) => {
   class FavoriteEvent extends Model {}
 
   FavoriteEvent.init({
-    UserId: DataTypes.INTEGER,
-    EventId: DataTypes.INTEGER
-  }, {sequelize});
+    UserId: {
+      type:DataTypes.INTEGER
+    },
+    EventId: {
+      type: DataTypes.INTEGER
+    }
+  }, {sequelize,
+    validate: {
+      isExist() {
+        return FavoriteEvent.count({ where: { UserId: this.UserId, EventId: this.EventId}})
+          .then(count => {
+            if (count != 0){
+              throw createError(400), {message: {error: 'Already Add this Event'}}  
+            }
+          })
+      }
+    }});
   FavoriteEvent.associate = function(models) {
     // associations can be defined here
   };
